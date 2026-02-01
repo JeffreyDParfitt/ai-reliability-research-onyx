@@ -15,7 +15,8 @@ I deployed a custom Python environment to stress-test a Transformer model. The o
 * **The Trap:** The model was trained until it achieved a loss of `0.006` (99.4% accuracy). To an untrained observer, this looks like a perfect model.
 * **The Audit:** I ran a secondary SHA-256 integrity check (`verify_sha256.py`) to validate the output.
 * **The Failure:** The model hallucinated the data structure. It fell into a repetitive loop (Mode Collapse), corrupting the file while asserting high confidence.
-* ### 📉 Technical Analysis: The "Domino Effect"
+
+### 📉 Technical Analysis: The "Domino Effect"
 Visualizing why the model succeeded during training but failed in the real world:
 
 ```text
@@ -30,6 +31,7 @@ Visualizing why the model succeeded during training but failed in the real world
 |                                   |       |                                   |
 +-----------------------------------+       +-----------------------------------+
            RESULT: STABLE                          RESULT: MODE COLLAPSE
+
 
 ### 📂 Evidence of Failure
 This repository contains the artifacts of the audit:
