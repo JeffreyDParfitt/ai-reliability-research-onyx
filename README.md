@@ -2,6 +2,7 @@
 
 ### 📋 Executive Summary
 **Analyst:** Jeffrey D. Parfitt (CompTIA Security+, Army Intel Analyst Veteran)
+
 **Subject:** Reliability Risks in Auto-Regressive Neural Networks
 
 As part of an independent investigation into AI Safety, I conducted a "Red Team" style experiment to test the limits of Generative AI. The goal was to determine if a standard AI model could reliably "memorize" and reconstruct critical data without corruption.
