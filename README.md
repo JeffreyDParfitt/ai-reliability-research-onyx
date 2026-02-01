@@ -30,8 +30,8 @@ Visualizing why the model succeeded during training but failed in the real world
 |      (Teacher Corrects It)        |       |    (Error Feeds Back -> Loop)     |
 |                                   |       |                                   |
 +-----------------------------------+       +-----------------------------------+
-           RESULT: STABLE                          RESULT: MODE COLLAPSE 
-
+           RESULT: STABLE                          RESULT: MODE COLLAPSE
+```
 
 ### 📂 Evidence of Failure
 This repository contains the artifacts of the audit:
