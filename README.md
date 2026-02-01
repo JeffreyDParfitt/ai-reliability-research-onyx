@@ -15,6 +15,27 @@ I deployed a custom Python environment to stress-test a Transformer model. The o
 * **The Trap:** The model was trained until it achieved a loss of `0.006` (99.4% accuracy). To an untrained observer, this looks like a perfect model.
 * **The Audit:** I ran a secondary SHA-256 integrity check (`verify_sha256.py`) to validate the output.
 * **The Failure:** The model hallucinated the data structure. It fell into a repetitive loop (Mode Collapse), corrupting the file while asserting high confidence.
+* graph TD
+    subgraph TRAINING ["TRAINING PHASE (Success)"]
+        direction LR
+        T1[Input: 'A'] -->|Model Guesses| T2(Output: 'B')
+        T2 -.->|Error Ignored| T3
+        T3[True Data: 'B'] -->|Teacher Forcing| T4[Input: 'B']
+        T4 -->|Model Guesses| T5(Output: 'C')
+        style T3 fill:#9f9,stroke:#333,stroke-width:2px
+        style T5 fill:#9f9,stroke:#333,stroke-width:2px
+    end
+
+    subgraph INFERENCE ["INFERENCE PHASE (Failure)"]
+        direction LR
+        I1[Input: 'A'] -->|Model Guesses| I2(Output: 'X' <br/>Error!)
+        I2 -->|Feedback Loop| I3[Input: 'X']
+        I3 -->|Model Guesses| I4(Output: 'X')
+        I4 -->|Cascade| I5[Input: 'X']
+        I5 -->|Result| I6[MODE COLLAPSE]
+        style I2 fill:#f99,stroke:#333,stroke-width:2px
+        style I6 fill:#f00,stroke:#333,color:#fff,stroke-width:4px
+    end
 
 ### 📂 Evidence of Failure
 This repository contains the artifacts of the audit:
